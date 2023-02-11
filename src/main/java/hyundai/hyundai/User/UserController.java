@@ -10,5 +10,4 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "User", tags = "User 관련 API")
 public class UserController {
 
-    @
 }

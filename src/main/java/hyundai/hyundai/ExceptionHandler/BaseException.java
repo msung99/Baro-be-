@@ -1,4 +1,10 @@
 package hyundai.hyundai.ExceptionHandler;
 
-public class BaseException {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class BaseException extends Exception{
+    private BaseResponseStatus status;
 }
