@@ -2,6 +2,8 @@ package hyundai.hyundai.User;
 
 import hyundai.hyundai.ExceptionHandler.BaseException;
 import hyundai.hyundai.ExceptionHandler.BaseResponse;
+import hyundai.hyundai.User.model.LoginUserReq;
+import hyundai.hyundai.User.model.LoginUserRes;
 import hyundai.hyundai.User.model.SignupUserReq;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,6 +31,18 @@ public class UserController {
             return new BaseResponse();
         } catch (BaseException exception){
             return new BaseResponse(exception.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/login")
+    @Operation(summary = "로그인", description = "Token이 아닌, userIdx(user pk값)를 리턴해주는 방식")
+    public BaseResponse<LoginUserRes> login(@RequestBody LoginUserReq loginUserReq){
+        try{
+            LoginUserRes loginUserRes = userService.login(loginUserReq);
+            return new BaseResponse(loginUserRes);
+        } catch (BaseException exception){
+            return new BaseResponse<LoginUserRes>(exception.getStatus());
         }
     }
 }
