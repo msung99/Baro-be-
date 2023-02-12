@@ -22,7 +22,7 @@ public class SwaggerConfig {  // Swagger
 
     private static final String API_NAME = "Hyundai API";
     private static final String API_VERSION = "0.0.1";
-    private static final String API_DESCRIPTION = "Maestro API 명세서";
+    private static final String API_DESCRIPTION = "Baro API 명세서";
     private static final String REFERENCE = "AccessToken 헤더 값";
     private static final String RefreshToken = "RefreshToken 헤더 값";
 
