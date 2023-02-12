@@ -3,6 +3,8 @@ package hyundai.hyundai.User;
 import hyundai.hyundai.ExceptionHandler.BaseException;
 import hyundai.hyundai.ExceptionHandler.BaseResponseStatus;
 import hyundai.hyundai.ExceptionHandler.Validation.CheckValidForm;
+import hyundai.hyundai.User.model.LoginUserReq;
+import hyundai.hyundai.User.model.LoginUserRes;
 import hyundai.hyundai.User.model.SignupUserReq;
 import hyundai.hyundai.User.model.UserEntity;
 import org.springframework.stereotype.Service;
@@ -41,6 +43,15 @@ public class UserService {
             userRepository.save(userEntity);
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        }
+    }
+
+    public LoginUserRes login(LoginUserReq loginUserReq) throws BaseException{
+        try{
+            LoginUserRes loginUserRes = userRepository.findUser(loginUserReq.getEmail(), loginUserReq.getPassword());
+            return new LoginUserRes(loginUserRes.getUserIdx());
+        } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.NOT_EXISTS_USER);
         }
     }
 }

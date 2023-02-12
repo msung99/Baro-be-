@@ -10,7 +10,8 @@ public enum BaseResponseStatus {
     INVALID_PASSWORD_FORM("비밀번호 형식을 확인해주세요"),
     NOT_EQUAL_PASSWORD_REPASSWORD("비밀번호는 숫자,문자를 모두 포함하며, 8자~20자 사이로 입력해주세요"),
 
-    SERVER_ERROR("서버와의 연동에 실패했습니다.");
+    SERVER_ERROR("서버와의 연동에 실패했습니다"),
+    NOT_EXISTS_USER("이메일 또는 비밀번호가 잘못되었습니다");
 
     private final String message;
     private BaseResponseStatus(String message){
