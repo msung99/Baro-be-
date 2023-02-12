@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public void createUser(SignupUserReq signupUserReq) throws BaseException{
         if(signupUserReq.getEmail() == null || signupUserReq.getEmail() == ""){
@@ -24,7 +29,7 @@ public class UserService {
 
         // 비밓번호와 재입력받은 비밓번호가 같은지 다른지 유효성 검사 (다르면 예외 발생)
         if(!CheckValidForm.isEqual_Passwrord_Check(signupUserReq.getPassword(), signupUserReq.getRepass())){
-            throw new BaseException(BaseResponseStatus.NOT_EQUAL_PASSWORD_REPASSWORD)
+            throw new BaseException(BaseResponseStatus.NOT_EQUAL_PASSWORD_REPASSWORD);
         }
 
         if(!CheckValidForm.isValid_Password_Form(signupUserReq.getPassword())){
@@ -32,7 +37,8 @@ public class UserService {
         }
 
         try{
-            UserEntity userEntity = signupUserReq.toEntity();
+            UserEntity userEntity = signupUserReq.toEntity();  // DTO -> Entity 변환
+            userRepository.save(userEntity);
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
