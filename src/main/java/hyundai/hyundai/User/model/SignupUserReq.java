@@ -22,4 +22,12 @@ public class SignupUserReq {
 
     @ApiModelProperty(example = "msung99")
     private String nickname;
+
+    public UserEntity toEntity(){
+        return UserEntity.builder()
+                .email(email)
+                .password(password)
+                .nickname(nickname)
+                .build();
+    }
 }

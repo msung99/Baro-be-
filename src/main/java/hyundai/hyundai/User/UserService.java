@@ -4,12 +4,13 @@ import hyundai.hyundai.ExceptionHandler.BaseException;
 import hyundai.hyundai.ExceptionHandler.BaseResponseStatus;
 import hyundai.hyundai.ExceptionHandler.Validation.CheckValidForm;
 import hyundai.hyundai.User.model.SignupUserReq;
+import hyundai.hyundai.User.model.UserEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
-    public createUser(SignupUserReq signupUserReq) throws BaseException{
+    public void createUser(SignupUserReq signupUserReq) throws BaseException{
         if(signupUserReq.getEmail() == null || signupUserReq.getEmail() == ""){
             throw new BaseException(BaseResponseStatus.INVALID_EMAIL_FORM);
         }
@@ -28,6 +29,12 @@ public class UserService {
 
         if(!CheckValidForm.isValid_Password_Form(signupUserReq.getPassword())){
             throw new BaseException(BaseResponseStatus.NOT_EQUAL_PASSWORD_REPASSWORD);
+        }
+
+        try{
+            UserEntity userEntity = signupUserReq.toEntity();
+        } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
     }
 }
