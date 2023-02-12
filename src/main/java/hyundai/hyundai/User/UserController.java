@@ -4,6 +4,7 @@ import hyundai.hyundai.ExceptionHandler.BaseException;
 import hyundai.hyundai.ExceptionHandler.BaseResponse;
 import hyundai.hyundai.User.model.SignupUserReq;
 import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/signup")
+    @Operation(summary = "회원가입", description = "email, password 필드 값을 정상적인 값을 입력받도록 Regex(정규 표현식)을 사용했다는점 참고 해주세요!")
     public BaseResponse createUser(@RequestBody SignupUserReq signupUserReq){
         try{
             userService.createUser(signupUserReq);
