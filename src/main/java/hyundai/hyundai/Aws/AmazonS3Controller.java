@@ -23,13 +23,13 @@ import java.util.UUID;
 public class AmazonS3Controller {
     private final AwsS3Service awsS3Service;
     @PostMapping("/uploadFile")
-    @Operation(summary = "파일 업로드", description = "MultipartFiles 을 리스트 형태로 입력")
+    @Operation(summary = "파일 업로드", description = "(백엔드 더미데이터 관련 API이니, 이 API는 무시하세요)MultipartFiles 을 리스트 형태로 입력")
     public ResponseEntity<List<String>> uploadFile(List<MultipartFile> multipartFiles){
          return ResponseEntity.ok(awsS3Service.uploadFile(multipartFiles));
     }
 
     @DeleteMapping("/deleteFile")
-    @Operation(summary = "파일 삭제", description = "fileName 에 해당하는 파일 삭제")
+    @Operation(summary = "파일 삭제", description = "(백엔드 더미데이터 관련 API이니, 이 API는 무시하세요)fileName 에 해당하는 파일 삭제")
     public ResponseEntity<String> deleteFile(@RequestParam String fileName){
         awsS3Service.deleteFile(fileName);
         return ResponseEntity.ok(fileName);
