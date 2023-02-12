@@ -2,6 +2,7 @@ package hyundai.hyundai.ExceptionHandler;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,11 +11,13 @@ import lombok.Getter;
 @JsonPropertyOrder({"message"})
 public class BaseResponse<T> {
 
+    @ApiModelProperty(example =  "요청에 성공했습니다.")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String message;
     private T result;
 
     // 요청에 성공한 경우1 : Response 미포함
+
     public BaseResponse(){
         this.message = BaseResponseStatus.SUCCESS.getMessage();
     }
