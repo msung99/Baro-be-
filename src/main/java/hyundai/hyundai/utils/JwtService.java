@@ -3,36 +3,43 @@ package hyundai.hyundai.utils;
 
 import hyundai.hyundai.ExceptionHandler.BaseException;
 import hyundai.hyundai.ExceptionHandler.BaseResponseStatus;
-import hyundai.hyundai.User.TokenDto;
+import hyundai.hyundai.User.model.TokenDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.crypto.Data;
+import java.security.Key;
 import java.util.Date;
 
 @Service
 public class JwtService {
     private static final String AUTHORITIES_KEY = "auth";
     private static final String BEARER_TYPE = "Bearer";
-    private static final long ACCESS_TOKEN_EXPIRE_TIME = 30 * 60 * 1000L; // 30분
+    private static final long ACCESS_TOKEN_EXPIRE_TIME = 1*(1000*60*30); // 30분
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000L;  // 7일
     private final String key = Secret.JWT_SECRET_KEY;
 
+
     public TokenDto createJwt(int userIdx){
+        byte[] keyBytes = Decoders.BASE64.decode(key);
+        Key accessKey = Keys.hmacShaKeyFor(keyBytes);
         // accessToken 생성
         Date accessTokenExpiresIn = new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRE_TIME);
         String accessToken = Jwts.builder()
                 .setHeaderParam("type", "jwt")
                 .claim("userIdx", userIdx)
+                .setIssuedAt(new Date())
                 .setExpiration(accessTokenExpiresIn)
-                .signWith(SignatureAlgorithm.HS256, key)
+                .signWith(SignatureAlgorithm.HS256, accessKey)
                 .compact();
+
 
         return TokenDto.builder()
                 .userIdx(userIdx)
@@ -42,7 +49,7 @@ public class JwtService {
 
     public String getJwt(){
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-        return request.getHeader("Authorization");
+        return request.getHeader("Authentication");
     }
 
     public int getUserIdx() throws BaseException {

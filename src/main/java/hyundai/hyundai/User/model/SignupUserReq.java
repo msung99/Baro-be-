@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 public class SignupUserReq {
 
     @ApiModelProperty(example = "msung1234")
-    @NotEmpty(message = "아이디")
+    @NotEmpty(message = "아이디는 필수 입력값입니다")
     @Pattern(regexp = "^[a-z0-9]{5,20}$", message = "아이디는 영어 소문자와 숫자만 사용하여 5~20자리여야 합니다.")
     private String identification;
 
@@ -38,6 +38,7 @@ public class SignupUserReq {
         return UserEntity.builder()
                 .password(password)
                 .nickname(nickname)
+                .identification(identification)
                 .build();
     }
 }

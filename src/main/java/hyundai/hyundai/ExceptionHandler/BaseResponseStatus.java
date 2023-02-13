@@ -14,7 +14,8 @@ public enum BaseResponseStatus {
     NOT_EXISTS_USER("이메일 또는 비밀번호가 잘못되었습니다"),
     EMPTY_JWT("토큰이 비어있습니다. HTTP Header 에 토큰을 실어서 요청을 보내주세요"),
     INVALID_TOKEN("변조된 토큰입니다. 올바른 토큰을 전송해주세요"),
-    ACCESS_TOKEN_EXPIRED("만료된 토큰입니다. 로그인을 시도하여 새로운 토큰을 발급받으세요");
+    ACCESS_TOKEN_EXPIRED("만료된 토큰입니다. 로그인을 시도하여 새로운 토큰을 발급받으세요"),
+    EXISTS_USER("이미 존재하는 아이디입니다");
 
     private final String message;
     private BaseResponseStatus(String message){
