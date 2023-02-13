@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChatGptRes {
-    @ApiModelProperty
+    @ApiModelProperty("내 현상황에 알맞는 침대 종류에는 무엇이 있을가?")
     String answer;
+
+    @ApiModelProperty("침대")
+    String category;
 }

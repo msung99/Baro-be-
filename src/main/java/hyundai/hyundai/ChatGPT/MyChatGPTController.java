@@ -26,8 +26,7 @@ public class MyChatGPTController {
     @Operation(summary = "chatGPT 에게 질문하기", description = "질문을 보내면 그에 알맞는 대답을 보내줍니다.")
     public BaseResponse<ChatGptRes> askToChatGPT(@RequestBody ChatGptReq chatGptReq){
         try {
-            String answer = chatGPTService.getChatResponse(chatGptReq.getQuestion());
-            ChatGptRes chatGptRes = new ChatGptRes(answer);
+            ChatGptRes chatGptRes = chatGPTService.getChatResponse(chatGptReq.getQuestion());
             return new BaseResponse(chatGptRes);
         } catch (BaseException baseException){
             return new BaseResponse(baseException.getStatus());
