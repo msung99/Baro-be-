@@ -25,13 +25,14 @@ public class MyChatGPTService {
     @Value("${openai.api-key}")
     private String apikey;
 
-    List<String> keywordList = Arrays.asList("침대", "책상", "수납상자", "식탁", "전시대", "냉장고", "의자", "검색 디바이스", "의료형 침대");
+    List<String> keywordList = Arrays.asList("의료", "거주", "운송", "스토어", "이동수단", "오피스", "다용도", "엔터테인먼트");
 
     public ChatGptRes getChatResponse(String prompt) throws BaseException {
         try {
             String responseMessage = chatgptService.sendMessage(prompt);
             String category = getKeywordInAnswer(responseMessage);
-            return new ChatGptRes(responseMessage, category);
+            String resultMessage =  parsingResponseMessage(responseMessage);
+            return new ChatGptRes(resultMessage, category);
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
@@ -46,6 +47,25 @@ public class MyChatGPTService {
                 break;
             }
         }
+        if(result == null){  // 8개의 키워드중에 아무것도 해당 안되면 "커스텀" 리턴
+            result = "커스텀";
+        }
         return result;
+    }
+    /*
+    //2. 특정문자 이후의 문자열 제거
+    String str = "ABCD/DEFGH";
+    String result = str.substring(str.lastIndexOf("/")+1);
+            System.out.println(result);
+    //결과값 DEFGH
+     */
+
+    public String parsingResponseMessage(String responseMessage){
+        responseMessage = responseMessage.toLowerCase();
+        String parsingResult = responseMessage;
+        if(responseMessage.contains("answer")){
+            parsingResult = responseMessage.substring(responseMessage.lastIndexOf("answer") + 8);
+        }
+        return parsingResult;
     }
 }
