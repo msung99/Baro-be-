@@ -1,5 +1,7 @@
 package hyundai.hyundai.ChatGPT;
 
+import hyundai.hyundai.ExceptionHandler.BaseException;
+import hyundai.hyundai.ExceptionHandler.BaseResponseStatus;
 import io.github.flashvayne.chatgpt.service.ChatgptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,8 +24,13 @@ public class MyChatGPTService {
     // Prompt text for the GPT model
     String prompt = "Hello, ChatGPT. How are you doing today?";
 
-    public void getChatResponse(String prompt){
-        String responseMessage = chatgptService.sendMessage(prompt);
-        System.out.println(responseMessage);
+    public String getChatResponse(String prompt) throws BaseException {
+        try {
+            String responseMessage = chatgptService.sendMessage(prompt);
+            System.out.println(responseMessage);
+            return responseMessage;
+        } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        }
     }
 }

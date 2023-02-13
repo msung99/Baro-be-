@@ -42,7 +42,7 @@ public class UserController {
             LoginUserRes loginUserRes = userService.login(loginUserReq);
             return new BaseResponse(loginUserRes);
         } catch (BaseException exception){
-            return new BaseResponse<LoginUserRes>(exception.getStatus());
+            return new BaseResponse(exception.getStatus());
         }
     }
 
