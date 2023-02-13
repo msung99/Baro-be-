@@ -10,6 +10,8 @@ import org.springframework.data.repository.query.Param;
 @EnableJpaRepositories
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
-    @Query("select new hyundai.hyundai.User.model.LoginUserRes(m.userIdx) from UserEntity m where m.email = :email and m.password = :password")
-    LoginUserRes findUser(@Param("email") String email, @Param("password") String password);
+    @Query("select m from UserEntity m where m.identification = :identification and m.password = :password")
+    UserEntity findUser(@Param("identification") String identification, @Param("password") String password);
+
+    boolean existsUserEntityByIdentification(String identification);
 }

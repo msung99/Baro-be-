@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginUserReq {
 
-    @ApiModelProperty(example = "msung99@naver.com")
-    private String email;
+    @ApiModelProperty(example = "msung1234")
+    private String identification;
 
     @ApiModelProperty(example = "mypassword")
     private String password;

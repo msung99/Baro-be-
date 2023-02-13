@@ -35,14 +35,15 @@ public class UserController {
     }
 
     @ResponseBody
-    @GetMapping("/login")
-    @Operation(summary = "로그인", description = "Token이 아닌, userIdx(user pk값)를 리턴해주는 방식")
+    @PostMapping("/login")
+    @Operation(summary = "로그인", description = "HttpHeader명:Authorization / 토큰 발급")
     public BaseResponse<LoginUserRes> login(@RequestBody LoginUserReq loginUserReq){
         try{
             LoginUserRes loginUserRes = userService.login(loginUserReq);
             return new BaseResponse(loginUserRes);
         } catch (BaseException exception){
-            return new BaseResponse<LoginUserRes>(exception.getStatus());
+            return new BaseResponse(exception.getStatus());
         }
     }
+
 }

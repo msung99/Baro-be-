@@ -44,6 +44,14 @@ cloud:
     stack:
       auto: false
 
+chatgpt:
+  api-key: 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
+
+openai:
+  api-key: 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
+
+# api-key=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
+
 #  AKIAZLIPYGMP4NM5JAVL
 #  z889D4xLWYrlPdbF4hu4emHioP7oVi5zBQ0Btd5J
 
