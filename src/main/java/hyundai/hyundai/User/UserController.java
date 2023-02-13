@@ -36,7 +36,7 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/login")
-    @Operation(summary = "로그인", description = "HttpHeader 이름 : Authorization")
+    @Operation(summary = "로그인", description = "HttpHeader명:Authorization / 토큰 발급")
     public BaseResponse<LoginUserRes> login(@RequestBody LoginUserReq loginUserReq){
         try{
             LoginUserRes loginUserRes = userService.login(loginUserReq);
@@ -45,4 +45,5 @@ public class UserController {
             return new BaseResponse<LoginUserRes>(exception.getStatus());
         }
     }
+
 }
