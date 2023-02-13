@@ -63,9 +63,11 @@ public class MyChatGPTService {
     public String parsingResponseMessage(String responseMessage){
         responseMessage = responseMessage.toLowerCase();
         String parsingResult = responseMessage;
-        if(responseMessage.contains("answer")){
+        if(responseMessage.contains("answer")) {
             parsingResult = responseMessage.substring(responseMessage.lastIndexOf("answer") + 8);
         }
+        parsingResult = parsingResult.replace(String.valueOf("\n"), "");
+        // parsingResult = parsingResult.replaceAll("[^\\n+]", "");
         return parsingResult;
     }
 }
