@@ -45,10 +45,12 @@ cloud:
       auto: false
 
 chatgpt:
-  api-key: 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
+  api-key: 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
+
+# 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
 
 openai:
-  api-key: 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
+   api-key: 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
 
 # api-key=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
 
