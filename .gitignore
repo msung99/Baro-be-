@@ -7,6 +7,7 @@ build/
 
 # API Key 를 노출시키지 않기 위해  파일을 사용
 application-API-KEY.properties
+*.properties
 
 ### STS ###
 .apt_generated
