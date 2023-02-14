@@ -30,6 +30,9 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
 
+  # API Key 유출 방지
+  profiles:
+    include: API-KEY
 
 
 cloud:
@@ -45,12 +48,13 @@ cloud:
       auto: false
 
 chatgpt:
-  api-key: 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
+  api-key: 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
 
 # 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
 
 openai:
-   api-key: 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
+   api-key: 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
+
 
 # api-key=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
 

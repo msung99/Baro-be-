@@ -67,3 +67,6 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// Properties properties = new Properties();
+// properties.load(project.rootProject.file('local.properties').newDataInputStream())
