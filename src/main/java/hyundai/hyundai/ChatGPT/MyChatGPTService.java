@@ -6,6 +6,7 @@ import hyundai.hyundai.ExceptionHandler.BaseResponseStatus;
 import io.github.flashvayne.chatgpt.service.ChatgptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.stylesheets.LinkStyle;
 
@@ -30,6 +31,7 @@ public class MyChatGPTService {
     public ChatGptRes getChatResponse(String prompt) throws BaseException {
         try {
             String responseMessage = chatgptService.sendMessage(prompt);
+            // headers.set("Authorization", "Bearer " + apikey);
             String category = getKeywordInAnswer(responseMessage);
             String resultMessage =  parsingResponseMessage(responseMessage);
             return new ChatGptRes(resultMessage, category);
