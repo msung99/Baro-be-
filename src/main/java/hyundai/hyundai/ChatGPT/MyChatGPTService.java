@@ -34,6 +34,9 @@ public class MyChatGPTService {
             String resultMessage =  parsingResponseMessage(responseMessage);
             return new ChatGptRes(resultMessage, category);
         } catch (Exception exception){
+            System.out.println(exception);
+            System.out.println(exception.getMessage());
+            System.out.println(exception.toString());
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
     }
