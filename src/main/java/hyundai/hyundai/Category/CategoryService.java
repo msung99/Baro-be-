@@ -29,8 +29,7 @@ public class CategoryService {
             CategoryEntity categoryEntity = categoryRepository.findById(categoryIdx).get();
             UserEntity userEntity = userRepository.findById(userIdx).get();
             userEntity.setCategory(categoryEntity);
-            System.out.println(userEntity.getCategory().getCategoryName());
-            System.out.println(userEntity.getCategory().getCategoryIdx());
+            userRepository.save(userEntity);
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
