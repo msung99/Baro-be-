@@ -29,10 +29,10 @@ public class SignupUserReq {
     @NotEmpty(message = "비밀번호 확인은 필수 입력값입니다")
     private String repass;
 
-    @ApiModelProperty(example = "msung99")
-    @NotEmpty(message = "닉네임은 필수 입력값입니다")
-    @Pattern(regexp = "^[가-힣a-zA-Z0-9]{2,10}$" , message = "닉네임은 특수문자를 포함하지 않은 2~10자리여야 합니다.")
-    private String nickname;
+    //@ApiModelProperty(example = "msung99")
+    // @NotEmpty(message = "닉네임은 필수 입력값입니다")
+    // @Pattern(regexp = "^[가-힣a-zA-Z0-9]{2,10}$" , message = "닉네임은 특수문자를 포함하지 않은 2~10자리여야 합니다.")
+    // private String nickname;
 
     public UserEntity toEntity(){
         return UserEntity.builder()
