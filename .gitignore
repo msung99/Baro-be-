@@ -5,6 +5,10 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+# API Key 를 노출시키지 않기 위해  파일을 사용
+application.yml
+application-API-KEY.properties
+
 ### STS ###
 .apt_generated
 .classpath
