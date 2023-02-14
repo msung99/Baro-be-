@@ -37,7 +37,6 @@ public class SignupUserReq {
     public UserEntity toEntity(){
         return UserEntity.builder()
                 .password(password)
-                .nickname(nickname)
                 .identification(identification)
                 .build();
     }
