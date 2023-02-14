@@ -22,6 +22,7 @@ public class MyChatGPTController {
         this.chatGPTService = chatGPTService;
     }
 
+
     @ResponseBody
     @PostMapping("/askChatGPT")
     @Operation(summary = "chatGPT 에게 질문하기", description = "질문을 보내면 그에 알맞는 대답을 보내줍니다.")
