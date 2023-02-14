@@ -7,6 +7,7 @@ import hyundai.hyundai.User.model.*;
 import hyundai.hyundai.utils.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -44,9 +45,6 @@ public class UserService {
         }
     }
 
-
-
-
     public LoginUserRes login(LoginUserReq loginUserReq) throws BaseException{
         try{
             // LoginUserRes loginUserRes = userRepository.findUser(loginUserReq.getEmail(), loginUserReq.getPassword());
@@ -56,6 +54,16 @@ public class UserService {
             return new LoginUserRes(userEntity.getUserIdx(), tokenDto.getAccessToken());
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.NOT_EXISTS_USER);
+        }
+    }
+
+    @Transactional
+    public void setPeopleCount(int userIdx, int peopleCount) throws BaseException{
+        try{
+            UserEntity userEntity = userRepository.findById(userIdx).get();
+            userEntity.setPeopleCount(peopleCount);
+        } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
     }
 }

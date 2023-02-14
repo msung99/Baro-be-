@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "User")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder @Getter @Setter
+@Data @Builder
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +26,8 @@ public class UserEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoryIdx") // referencedColumnName = "categoryIdx" => 생략시 자동으로 PK 를 가리킴
     private CategoryEntity category;
+
+    int peopleCount;
 
     /*
     @OneToMany(mappedBy = "user_id")

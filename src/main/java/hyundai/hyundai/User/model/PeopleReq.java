@@ -1,4 +1,4 @@
-package hyundai.hyundai.Category.model;
+package hyundai.hyundai.User.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryReq {
-
+public class PeopleReq {
     @ApiModelProperty(example = "3")
-    int categoryIdx;
+    private int count;
 }
