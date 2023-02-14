@@ -48,9 +48,13 @@ cloud:
       auto: false
 
 
+subKey: sk-1VjSlPA1LFqA3ddGyIZBT3BlbkFJRfkN
+lastKey: Bn5G7hInruek3ZCi
 
-# api-key=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
+# ${subKey}${lastKey}
 
-#  AKIAZLIPYGMP4NM5JAVL
-#  z889D4xLWYrlPdbF4hu4emHioP7oVi5zBQ0Btd5J
+openai:
+  api-key: "${subKey}${lastKey}"
 
+chatgpt:
+  api-key: "${subKey}${lastKey}"

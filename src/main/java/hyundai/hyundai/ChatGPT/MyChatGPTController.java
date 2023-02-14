@@ -23,7 +23,7 @@ public class MyChatGPTController {
     }
 
     @ResponseBody
-    @PostMapping("/askToChatGPT")
+    @PostMapping("/askChatGPT")
     @Operation(summary = "chatGPT 에게 질문하기", description = "질문을 보내면 그에 알맞는 대답을 보내줍니다.")
     public BaseResponse<ChatGptRes> askToChatGPT(@RequestBody ChatGptReq chatGptReq){
         try {
