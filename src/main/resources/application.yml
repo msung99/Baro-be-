@@ -47,15 +47,6 @@ cloud:
     stack:
       auto: false
 
-chatgpt:
-  api-key: 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
-
-# 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
-
-openai:
-   api-key: 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
-
-
 # api-key=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
 
 #  AKIAZLIPYGMP4NM5JAVL
