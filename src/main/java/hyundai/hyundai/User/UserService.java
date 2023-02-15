@@ -83,9 +83,13 @@ public class UserService {
     }
 
     @Transactional
-    public void makePassword(IdentificationReq identificationReq) throws BaseException{
+    public void makePassword(PasswordReq passwordReq) throws BaseException{
         try{
-
+            String password = passwordReq.getPassword();
+            int userIdx = passwordReq.getUserIdx();
+            UserEntity userEntity = userRepository.findById(userIdx).get();
+            userEntity.setPassword(password);
+            userRepository.save(userEntity);
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
