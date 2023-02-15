@@ -26,19 +26,17 @@ public class MyChatGPTService {
     @Value("${openai.api-key}")
     private String apikey;
 
-    List<String> keywordList = Arrays.asList("의료", "거주", "운송", "스토어", "이동수단", "오피스", "다용도", "엔터테인먼트");
+    List<String> keywordList = Arrays.asList("의료", "거주", "운송", "스토어", "이동수단", "오피스", "엔터테인먼트");
 
     public ChatGptRes getChatResponse(String prompt) throws BaseException {
         try {
             String responseMessage = chatgptService.sendMessage(prompt);
             // headers.set("Authorization", "Bearer " + apikey);
             String category = getKeywordInAnswer(responseMessage);
-            String resultMessage =  parsingResponseMessage(responseMessage);
-            return new ChatGptRes(resultMessage, category);
+            String resultMessage = parsingResponseMessage(responseMessage);
+            String splitResultMessage = splitMessage(resultMessage);
+            return new ChatGptRes(splitResultMessage, category);
         } catch (Exception exception){
-            System.out.println(exception);
-            System.out.println(exception.getMessage());
-            System.out.println(exception.toString());
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
     }
@@ -57,13 +55,6 @@ public class MyChatGPTService {
         }
         return result;
     }
-    /*
-    //2. 특정문자 이후의 문자열 제거
-    String str = "ABCD/DEFGH";
-    String result = str.substring(str.lastIndexOf("/")+1);
-            System.out.println(result);
-    //결과값 DEFGH
-     */
 
     public String parsingResponseMessage(String responseMessage){
         responseMessage = responseMessage.toLowerCase();
@@ -75,4 +66,19 @@ public class MyChatGPTService {
         // parsingResult = parsingResult.replaceAll("[^\\n+]", "");
         return parsingResult;
     }
+
+
+
+    public String splitMessage(String message){
+        String[] tempArr = message.split("[.]");
+        String[] resultArr = new String[tempArr.length];
+        for(int i=0; i< 2; i++){
+            resultArr[i] = tempArr[i];
+        }
+        String res = String.join(".", resultArr);
+        String splitResult = res.replace(String.valueOf("null"), "");
+        String realSplitResult = splitResult.substring(0, splitResult.length() - 1);
+        return realSplitResult;
+    }
 }
+
