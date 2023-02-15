@@ -15,8 +15,8 @@ public class ApiControllerAdvice {
     public ResponseEntity<Map<String, String>> handValidationExceptions(MethodArgumentNotValidException validException){
         Map<String, String> errors = new HashMap<>();
         validException.getBindingResult().getAllErrors()
-                .forEach(c -> errors.put(((FieldError) c).getField(), c.getDefaultMessage()));
-
+                .forEach(c -> errors.put("message", c.getDefaultMessage()));
+        // ((FieldError) c).getField()
         return ResponseEntity.badRequest().body(errors);
     }
 

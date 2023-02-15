@@ -34,7 +34,7 @@ public class UserController {
     @ResponseBody
     @PostMapping("/signup")
     @Operation(summary = "회원가입", description = "아이디, 비밀번호, 재확인 비밀번호를 한꺼번에 입력받고 회원가입하는 API 입니다. 이거 지울까말까 고민하다가 일단 남겨둔 API임")
-    public BaseResponse createUser(@RequestBody SignupUserReq signupUserReq){
+    public BaseResponse createUser(final @Valid @RequestBody SignupUserReq signupUserReq){
         try{
             userService.createUser(signupUserReq);
             return new BaseResponse();
@@ -47,19 +47,6 @@ public class UserController {
     @PostMapping("/signup/makeIdentification")
     @Operation(summary = "회원가입시 아이디 입력받기", description = "회원가입을 진행할떄 아이디, 비번, 재확인비번을 각각 따로 페이지를 넘겨갈때마다 입력받아서 유저 데이터를 생성합니다. / 아이디는 영어 소문자와 숫자만 사용하여 5~20자리여야 합니다.")
     public BaseResponse<UserIdxRes> makeIdentification(final @Valid @RequestBody IdentificationReq identificationReq) {
-        /*
-        if(errors.hasErrors()) { // 회원가입 실패시
-            System.out.println("==================================");
-            // 입력 데이터 유지
-            model.addAttribute("identificationReq", identificationReq);
-
-            // 유효성 통과 못한 필드와 메시지를 핸들링
-            Map<String, String> validatorResult = userService.validateHandling(errors);
-            for(String key : validatorResult.keySet()){
-                model.addAttribute(key, validatorResult.get(key));
-            }
-        } */
-
         try{
             int userIdx = userService.makeIdentification(identificationReq);
             return new BaseResponse(new UserIdxRes(userIdx));
@@ -71,7 +58,7 @@ public class UserController {
     @ResponseBody
     @PostMapping("/signup/makePassword")
     @Operation(summary = "회원가입시 비밀번호 입력받기", description = "회원가입 진행시 아이디 입력받은후 비밀번호 입력받는 페이지에서 활용 / 비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
-    public BaseResponse<UserIdxRes> makePassword(@RequestBody PasswordReq passwordReq){
+    public BaseResponse<UserIdxRes> makePassword(final @Valid @RequestBody PasswordReq passwordReq){
         try{
             userService.makePassword(passwordReq);
             return new BaseResponse(passwordReq.getUserIdx());
@@ -83,7 +70,7 @@ public class UserController {
     @ResponseBody
     @PostMapping("/signup/getRepassword")
     @Operation(summary = "회원가입 진행시 재확인 비밀번호 입력받기", description = "별도의 정규표현식은 사용하지 않았으며, 직전에 입력받은 비밀번호와 현재 입력받은 제확인 비밀번호가 일치하는지만 검증합니다.")
-    public BaseResponse checkRepassword(@RequestBody RepasswordReq repasswordReq){
+    public BaseResponse checkRepassword(final @Valid @RequestBody RepasswordReq repasswordReq){
         try{
             userService.checkRepassword(repasswordReq);
             return new BaseResponse();
