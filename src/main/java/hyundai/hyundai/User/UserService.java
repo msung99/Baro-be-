@@ -8,7 +8,11 @@ import hyundai.hyundai.utils.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 @Service
@@ -79,8 +83,8 @@ public class UserService {
             UserEntity userEntity = identificationReq.toEntity();
             userRepository.save(userEntity);
             return userEntity.getUserIdx();
-        } catch (Exception exception){
-            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        } catch (BaseException baseException){
+            throw new BaseException(baseException.getStatus());
         }
     }
 
@@ -98,16 +102,28 @@ public class UserService {
     }
 
     public void checkRepassword(RepasswordReq repasswordReq) throws BaseException{
-        try{
+        try {
             int userIdx = repasswordReq.getUserIdx();
             UserEntity userEntity = userRepository.findById(userIdx).get();
 
             // 비밓번호와 재입력받은 비밀번호가 같은지 다른지 유효성 검사 (다르면 예외 발생)
-            if(!CheckValidForm.isEqual_Passwrord_Check(repasswordReq.getRePassword(), userEntity.getPassword())){
+            if (!CheckValidForm.isEqual_Passwrord_Check(repasswordReq.getRePassword(), userEntity.getPassword())) {
                 throw new BaseException(BaseResponseStatus.NOT_EQUAL_PASSWORD_REPASSWORD);
             }
-        } catch (Exception exception){
-            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        } catch (BaseException exception){
+            throw new BaseException(exception.getStatus());
         }
+    }
+
+    // 회원가입 시, 유효성 체크
+    public Map<String, String> validateHandling(Errors errors) {
+        Map<String, String> validatorResult = new HashMap<>();
+
+        for (FieldError error : errors.getFieldErrors()) {
+            String validKeyName = String.format("valid_%s", error.getField());
+            validatorResult.put(validKeyName, error.getDefaultMessage());
+        }
+
+        return validatorResult;
     }
 }

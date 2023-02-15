@@ -14,8 +14,6 @@ public class CheckValidForm {
     }    // 날짜 형식, 전화 번호 형식 등 여러 Regex 인터넷에 검색해보자!
 
     public static boolean isEqual_Passwrord_Check(String password, String Repassword){
-        System.out.println(password);
-        System.out.println(Repassword);
         //if(password != Repassword)
         if(password.equals(Repassword))
             return true;

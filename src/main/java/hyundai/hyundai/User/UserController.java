@@ -8,7 +8,14 @@ import io.jsonwebtoken.Jwt;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import org.springframework.validation.Errors;
+import org.springframework.ui.Model;
+
+import java.util.Map;
 
 @RequestMapping("/user")
 @RestController
@@ -26,7 +33,7 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/signup")
-    @Operation(summary = "회원가입", description = "아이디, 패스워드 필드 값을 정상적인 값을 입력받도록 Regex(정규 표현식)을 사용했다는점 참고 해주세요!")
+    @Operation(summary = "회원가입", description = "아이디, 비밀번호, 재확인 비밀번호를 한꺼번에 입력받고 회원가입하는 API 입니다. 이거 지울까말까 고민하다가 일단 남겨둔 API임")
     public BaseResponse createUser(@RequestBody SignupUserReq signupUserReq){
         try{
             userService.createUser(signupUserReq);
@@ -39,7 +46,20 @@ public class UserController {
     @ResponseBody
     @PostMapping("/signup/makeIdentification")
     @Operation(summary = "회원가입시 아이디 입력받기", description = "회원가입을 진행할떄 아이디, 비번, 재확인비번을 각각 따로 페이지를 넘겨갈때마다 입력받아서 유저 데이터를 생성합니다. / 아이디는 영어 소문자와 숫자만 사용하여 5~20자리여야 합니다.")
-    public BaseResponse<UserIdxRes> makeIdentification(@RequestBody IdentificationReq identificationReq){
+    public BaseResponse<UserIdxRes> makeIdentification(final @Valid @RequestBody IdentificationReq identificationReq) {
+        /*
+        if(errors.hasErrors()) { // 회원가입 실패시
+            System.out.println("==================================");
+            // 입력 데이터 유지
+            model.addAttribute("identificationReq", identificationReq);
+
+            // 유효성 통과 못한 필드와 메시지를 핸들링
+            Map<String, String> validatorResult = userService.validateHandling(errors);
+            for(String key : validatorResult.keySet()){
+                model.addAttribute(key, validatorResult.get(key));
+            }
+        } */
+
         try{
             int userIdx = userService.makeIdentification(identificationReq);
             return new BaseResponse(new UserIdxRes(userIdx));

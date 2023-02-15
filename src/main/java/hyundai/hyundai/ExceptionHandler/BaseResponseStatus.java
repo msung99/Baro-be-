@@ -8,7 +8,8 @@ public enum BaseResponseStatus {
     SUCCESS("요청에 성공했습니다."),
     INVALID_EMAIL_FORM("이메일 형식을 확인해주세요"),
     INVALID_PASSWORD_FORM("비밀번호 형식을 확인해주세요"),
-    NOT_EQUAL_PASSWORD_REPASSWORD("비밀번호는 숫자,문자를 모두 포함하며, 8자~20자 사이로 입력해주세요"),
+    NOT_EQUAL_PASSWORD_REPASSWORD("일치하지 않습니다. 다시 한번 확인해주세요"),
+    // NOT_EQUAL_PASSWORD_REPASSWORD("비밀번호는 숫자,문자를 모두 포함하며, 8자~20자 사이로 입력해주세요"),
 
     SERVER_ERROR("서버와의 연동에 실패했습니다"),
     NOT_EXISTS_USER("아이디 또는 비밀번호를 다시 확인해주세요"),
