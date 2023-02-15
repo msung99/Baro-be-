@@ -55,6 +55,7 @@ public class UserController {
         }
     }
 
+
     @ResponseBody
     @PostMapping("/signup/makePassword")
     @Operation(summary = "회원가입시 비밀번호 입력받기", description = "회원가입 진행시 아이디 입력받은후 비밀번호 입력받는 페이지에서 활용 / 비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
