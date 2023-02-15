@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.StringTokenizer;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -90,6 +92,20 @@ public class UserService {
             UserEntity userEntity = userRepository.findById(userIdx).get();
             userEntity.setPassword(password);
             userRepository.save(userEntity);
+        } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        }
+    }
+
+    public void checkRepassword(RepasswordReq repasswordReq) throws BaseException{
+        try{
+            int userIdx = repasswordReq.getUserIdx();
+            UserEntity userEntity = userRepository.findById(userIdx).get();
+
+            // 비밓번호와 재입력받은 비밀번호가 같은지 다른지 유효성 검사 (다르면 예외 발생)
+            if(!CheckValidForm.isEqual_Passwrord_Check(repasswordReq.getRePassword(), userEntity.getPassword())){
+                throw new BaseException(BaseResponseStatus.NOT_EQUAL_PASSWORD_REPASSWORD);
+            }
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
