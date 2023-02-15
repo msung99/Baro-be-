@@ -65,8 +65,7 @@ public class UserController {
     @Operation(summary = "회원가입 진행시 재확인 비밀번호 입력받기", description = "별도의 정규표현식은 사용하지 않았으며, 직전에 입력받은 비밀번호와 현재 입력받은 제확인 비밀번호가 일치하는지만 검증합니다.")
     public BaseResponse checkRepassword(@RequestBody RepasswordReq repasswordReq){
         try{
-            userService.checkRepassword(repasswordReq
-            );
+            userService.checkRepassword(repasswordReq);
             return new BaseResponse();
         } catch (BaseException baseException){
             return new BaseResponse(baseException.getStatus());
