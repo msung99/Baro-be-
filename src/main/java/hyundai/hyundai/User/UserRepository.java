@@ -1,5 +1,6 @@
 package hyundai.hyundai.User;
 
+import hyundai.hyundai.Category.model.GetPeopleCategory;
 import hyundai.hyundai.User.model.LoginUserRes;
 import hyundai.hyundai.User.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     UserEntity findUser(@Param("identification") String identification, @Param("password") String password);
 
     boolean existsUserEntityByIdentification(String identification);
+
+    @Query("select new hyundai.hyundai.Category.model.GetPeopleCategory(c.categoryName, m.peopleCount) from UserEntity m join m.category c where m.userIdx = :userIdx")
+    GetPeopleCategory getSelectInfo(@Param("userIdx") int userIdx);
 }

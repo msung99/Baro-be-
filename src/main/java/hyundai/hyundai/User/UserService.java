@@ -7,6 +7,13 @@ import hyundai.hyundai.User.model.*;
 import hyundai.hyundai.utils.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
 
 @Service
 public class UserService {
@@ -44,9 +51,6 @@ public class UserService {
         }
     }
 
-
-
-
     public LoginUserRes login(LoginUserReq loginUserReq) throws BaseException{
         try{
             // LoginUserRes loginUserRes = userRepository.findUser(loginUserReq.getEmail(), loginUserReq.getPassword());
@@ -57,5 +61,69 @@ public class UserService {
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.NOT_EXISTS_USER);
         }
+    }
+
+    @Transactional
+    public void setPeopleCount(int userIdx, int peopleCount) throws BaseException{
+        try{
+            UserEntity userEntity = userRepository.findById(userIdx).get();
+            userEntity.setPeopleCount(peopleCount);
+        } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        }
+    }
+
+    @Transactional
+    public int makeIdentification(IdentificationReq identificationReq) throws BaseException{
+        try{
+            // 중복된 아이디를 가지는 유저가 또 존재하는지 확인
+            if(userRepository.existsUserEntityByIdentification(identificationReq.getIdentification())){
+                throw new BaseException(BaseResponseStatus.EXISTS_USER);
+            }
+            UserEntity userEntity = identificationReq.toEntity();
+            userRepository.save(userEntity);
+            return userEntity.getUserIdx();
+        } catch (BaseException baseException){
+            throw new BaseException(baseException.getStatus());
+        }
+    }
+
+    @Transactional
+    public void makePassword(PasswordReq passwordReq) throws BaseException{
+        try{
+            String password = passwordReq.getPassword();
+            int userIdx = passwordReq.getUserIdx();
+            UserEntity userEntity = userRepository.findById(userIdx).get();
+            userEntity.setPassword(password);
+            userRepository.save(userEntity);
+        } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        }
+    }
+
+    public void checkRepassword(RepasswordReq repasswordReq) throws BaseException{
+        try {
+            int userIdx = repasswordReq.getUserIdx();
+            UserEntity userEntity = userRepository.findById(userIdx).get();
+
+            // 비밓번호와 재입력받은 비밀번호가 같은지 다른지 유효성 검사 (다르면 예외 발생)
+            if (!CheckValidForm.isEqual_Passwrord_Check(repasswordReq.getRePassword(), userEntity.getPassword())) {
+                throw new BaseException(BaseResponseStatus.NOT_EQUAL_PASSWORD_REPASSWORD);
+            }
+        } catch (BaseException exception){
+            throw new BaseException(exception.getStatus());
+        }
+    }
+
+    // 회원가입 시, 유효성 체크
+    public Map<String, String> validateHandling(Errors errors) {
+        Map<String, String> validatorResult = new HashMap<>();
+
+        for (FieldError error : errors.getFieldErrors()) {
+            String validKeyName = String.format("valid_%s", error.getField());
+            validatorResult.put(validKeyName, error.getDefaultMessage());
+        }
+
+        return validatorResult;
     }
 }
