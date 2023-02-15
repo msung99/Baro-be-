@@ -39,19 +39,26 @@ public class UserController {
     @ResponseBody
     @PostMapping("/signup/makeIdentification")
     @Operation(summary = "회원가입시 아이디 입력받기", description = "회원가입을 진행할떄 아이디, 비번, 재확인비번을 각각 따로 페이지를 넘겨갈때마다 입력받아서 유저 데이터를 생성합니다. / 아이디는 영어 소문자와 숫자만 사용하여 5~20자리여야 합니다.")
-    public BaseResponse makeIdentification(@RequestBody IdentificationReq identificationReq){
+    public BaseResponse<UserIdxRes> makeIdentification(@RequestBody IdentificationReq identificationReq){
         try{
-            userService.makeIdentification(identificationReq);
-            return new BaseResponse();
+            int userIdx = userService.makeIdentification(identificationReq);
+            return new BaseResponse(new UserIdxRes(userIdx));
         } catch (BaseException exception){
             return new BaseResponse(exception.getStatus());
         }
     }
 
-    // @ResponseBody
-    // @PostMapping("/signup/makePassword")
-    // @Operation(summary = "회원가입시 비밀번호 입력받기", description = "회원가입 진행시 아이디 입력받은후 비밀번호 입력받는 페이지에서 활용 / 비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
-
+    @ResponseBody
+    @PostMapping("/signup/makePassword")
+    @Operation(summary = "회원가입시 비밀번호 입력받기", description = "회원가입 진행시 아이디 입력받은후 비밀번호 입력받는 페이지에서 활용 / 비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
+    public BaseResponse makePassword(@RequestBody IdentificationReq identificationReq){
+        try{
+            userService.makePassword(ide);
+            return new BaseResponse();
+        } catch (BaseException baseException){
+            return new BaseResponse(baseException.getStatus());
+        }
+    }
 
     @ResponseBody
     @PostMapping("/login")

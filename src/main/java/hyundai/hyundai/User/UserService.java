@@ -68,7 +68,7 @@ public class UserService {
     }
 
     @Transactional
-    public void makeIdentification(IdentificationReq identificationReq) throws BaseException{
+    public int makeIdentification(IdentificationReq identificationReq) throws BaseException{
         try{
             // 중복된 아이디를 가지는 유저가 또 존재하는지 확인
             if(userRepository.existsUserEntityByIdentification(identificationReq.getIdentification())){
@@ -76,6 +76,16 @@ public class UserService {
             }
             UserEntity userEntity = identificationReq.toEntity();
             userRepository.save(userEntity);
+            return userEntity.getUserIdx();
+        } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        }
+    }
+
+    @Transactional
+    public void makePassword(IdentificationReq identificationReq) throws BaseException{
+        try{
+
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
