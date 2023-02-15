@@ -5,7 +5,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "User")
@@ -28,6 +30,14 @@ public class UserEntity {
     private CategoryEntity category;
 
     int peopleCount;
+
+    // https://devhan.tistory.com/174
+    // @ElementCollection
+    // @CollectionTable(name = "customList", joinColumns = @JoinColumn(name = "customIdx"))
+    // @Column(name = "customNumber")
+    // https://postitforhooney.tistory.com/entry/springhibernateEntity-%EC%84%A0%EC%96%B8%EC%8B%9C%EC%97%90-Column%EC%9C%BC%EB%A1%9C-%EC%93%B0%EC%A7%80%EC%95%8A%EB%8A%94-%EB%B3%80%EC%88%98%EC%97%90-%EB%8C%80%ED%95%9C-%EC%84%A0%EC%96%B8-Transient
+    @Transient
+    private Set<Integer> customList = new HashSet<Integer>();
 
     /*
     @OneToMany(mappedBy = "user_id")
