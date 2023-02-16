@@ -1,5 +1,6 @@
 package hyundai.hyundai.Custom;
 
+import hyundai.hyundai.Custom.model.CustomRes;
 import hyundai.hyundai.ExceptionHandler.BaseException;
 import hyundai.hyundai.ExceptionHandler.BaseResponse;
 import hyundai.hyundai.Custom.model.CustomReq;
@@ -22,7 +23,7 @@ public class CustomController {
     }
 
     @ResponseBody
-    @PostMapping("/setCustom")
+    @PostMapping("/setCustomList")
     public BaseResponse setCustomList(@RequestBody CustomReq customReq){
         try {
             int userIdx = jwtService.getUserIdx();
@@ -33,4 +34,15 @@ public class CustomController {
         }
     }
 
+    @ResponseBody
+    @GetMapping("/getCustomList")
+    public BaseResponse<CustomRes> getCustomList(){
+        try {
+            int userIdx = jwtService.getUserIdx();
+            CustomRes customRes = customService.getCustomList(userIdx);
+            return new BaseResponse(customRes);
+        } catch (BaseException baseException){
+            return new BaseResponse(baseException.getStatus());
+        }
+    }
 }
