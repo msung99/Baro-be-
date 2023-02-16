@@ -1,14 +1,14 @@
 package hyundai.hyundai.Custom.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomRes {
-    private Set<Integer> customNumberList;
+    private List<Integer> customNumberList = new ArrayList<>();
 }

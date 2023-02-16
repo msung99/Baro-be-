@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -48,19 +50,23 @@ public class CustomService {
         }
     }
 
-    public CustomRes getCustomList(int userIdx) throws BaseException{
+    public CustomRes getCustomList(int userIdx, int customRecordIdx) throws BaseException{
         try{
             UserEntity userEntity = userRepository.findById(userIdx).get();
-            Set<Integer> customSet = new HashSet<>();
-
-            // Set<Integer> customList = userEntity.getCustomList();
-
+            CustomRecordEntity customRecordEntity = customRecordRepository.findById(customRecordIdx).get();
+            List<CustomEntity> customEntityList = customRepository.getCustomList(customRecordEntity);
             CustomRes customRes = new CustomRes();
-            for(Integer custom : customSet){
-                customRes.getCustomNumberList().add(custom);
+
+            for(CustomEntity customEntity : customEntityList){
+                customRes.getCustomNumberList().add(Integer.valueOf(customEntity.getCustomNumber()));
             }
+
+
             return customRes;
         } catch (Exception exception){
+            System.out.println(exception);
+            System.out.println(exception.getMessage());
+            System.out.println(exception.getCause());
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
     }
