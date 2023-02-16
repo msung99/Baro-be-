@@ -1,11 +1,13 @@
 package hyundai.hyundai.Custom;
 
 import hyundai.hyundai.Custom.model.CustomRes;
+import hyundai.hyundai.Custom.model.SetCustomListRes;
 import hyundai.hyundai.ExceptionHandler.BaseException;
 import hyundai.hyundai.ExceptionHandler.BaseResponse;
 import hyundai.hyundai.Custom.model.CustomReq;
 import hyundai.hyundai.utils.JwtService;
 import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,11 +26,12 @@ public class CustomController {
 
     @ResponseBody
     @PostMapping("/setCustomList")
-    public BaseResponse setCustomList(@RequestBody CustomReq customReq){
+    @Operation(summary = "커스텀 가구 번호 선택", description = "커스텀할 가구 번호를 배열 형태로 입력받습니다.")
+    public BaseResponse<SetCustomListRes> setCustomList(@RequestBody CustomReq customReq){
         try {
             int userIdx = jwtService.getUserIdx();
-            customService.setCustomList(userIdx, customReq);
-            return new BaseResponse();
+            SetCustomListRes setCustomListRes = customService.setCustomList(userIdx, customReq);
+            return new BaseResponse(setCustomListRes);
         } catch (BaseException baseException){
             return new BaseResponse(baseException.getStatus());
         }

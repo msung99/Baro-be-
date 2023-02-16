@@ -29,19 +29,20 @@ public class CustomService {
     }
 
     @Transactional
-    public void setCustomList(int userIdx, CustomReq customReq) throws BaseException {
+    public SetCustomListRes setCustomList(int userIdx, CustomReq customReq) throws BaseException {
         try {
             UserEntity userEntity = userRepository.findById(userIdx).get();
             MakeCustomRecordReq makeCustomRecordReq = new MakeCustomRecordReq(userEntity);
             CustomRecordEntity customRecordEntity = makeCustomRecordReq.toEntity(); // CustomRecordEntity 생성
             customRecordRepository.save(customRecordEntity);
             // CustomEntity 데이터들 생성
-            for(Integer customNumber : customReq.getCustomNumberList()){
+            for(Integer customNumber : customReq.getCustomNumberList()) {
                 MakeCustomReq makeCustomReq = new MakeCustomReq(customNumber, customRecordEntity);
                 CustomEntity customEntity = makeCustomReq.toEntity();
                 customRepository.save(customEntity);
             }
-
+            int customRecordIdx = customRecordEntity.getCustomRecordIdx();
+            return new SetCustomListRes(customRecordIdx);
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
