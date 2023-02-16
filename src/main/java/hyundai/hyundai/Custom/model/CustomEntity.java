@@ -14,4 +14,8 @@ public class CustomEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customIdx;
     private int customNumber;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customRecordIdx")
+    public CustomRecordEntity customRecord;
 }
