@@ -39,9 +39,11 @@ public class CustomService {
             customRecordRepository.save(customRecordEntity);
             // CustomEntity 데이터들 생성
             for(Integer customNumber : customReq.getCustomNumberList()) {
-                MakeCustomReq makeCustomReq = new MakeCustomReq(customNumber, customRecordEntity);
-                CustomEntity customEntity = makeCustomReq.toEntity();
-                customRepository.save(customEntity);
+                if(customNumber != null) {
+                    MakeCustomReq makeCustomReq = new MakeCustomReq(customNumber, customRecordEntity);
+                    CustomEntity customEntity = makeCustomReq.toEntity();
+                    customRepository.save(customEntity);
+                }
             }
             int customRecordIdx = customRecordEntity.getCustomRecordIdx();
             return new SetCustomListRes(customRecordIdx);
