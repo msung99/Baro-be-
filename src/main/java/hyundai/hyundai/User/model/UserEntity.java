@@ -1,17 +1,20 @@
 package hyundai.hyundai.User.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import hyundai.hyundai.Category.model.CategoryEntity;
+import hyundai.hyundai.Custom.model.CustomRecordEntity;
 import lombok.*;
+import org.springframework.stereotype.Indexed;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
+@Indexed
 @Table(name = "User")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Data @Builder
+@Getter @Setter @Builder
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,19 +32,16 @@ public class UserEntity {
 
     int peopleCount;
 
-    /*
-    @OneToMany(mappedBy = "user_id")
-    private List<GoalEntity> goalEntityList = new ArrayList<>();
-     */
-    /*
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
-    private UserEntity user_id; // 외래키 : 어떤 유저의 목표인가?
-     */
+    @OneToMany(mappedBy = "user")
+    private List<CustomRecordEntity> customRecordEntityList = new ArrayList<>();
+
+    // https://devhan.tistory.com/174
+    // @CollectionTable(name = "customList", joinColumns = @JoinColumn(name = "customIdx"))
+    // @ElementCollection(fetch = FetchType.LAZY)
+    // @CollectionTable(name = "Custom", joinColumns = @JoinColumn(name = "customIdx", insertable = false))
+    // @Column(name = "customNumber")
+    // private Set<Integer> customList = new HashSet<>();
 
 
-    // 회원가입 (entity -> DTO 변환)
-    public SignupUserRes toSignupUserRes(){
-        return new SignupUserRes(userIdx);
-    }
+    // https://postitforhooney.tistory.com/entry/springhibernateEntity-%EC%84%A0%EC%96%B8%EC%8B%9C%EC%97%90-Column%EC%9C%BC%EB%A1%9C-%EC%93%B0%EC%A7%80%EC%95%8A%EB%8A%94-%EB%B3%80%EC%88%98%EC%97%90-%EB%8C%80%ED%95%9C-%EC%84%A0%EC%96%B8-Transient
 }
