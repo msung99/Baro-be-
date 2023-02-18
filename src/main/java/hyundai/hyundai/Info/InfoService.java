@@ -3,10 +3,16 @@ package hyundai.hyundai.Info;
 import hyundai.hyundai.ExceptionHandler.BaseException;
 import hyundai.hyundai.ExceptionHandler.BaseResponseStatus;
 import hyundai.hyundai.Info.model.GetInfoRes;
+import hyundai.hyundai.Info.model.InfoDummy;
 import hyundai.hyundai.Info.model.InfoEntity;
+import hyundai.hyundai.Info.model.InfoInputReq;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +39,33 @@ public class InfoService {
             }
             return getInfoResList;
         } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        }
+    }
+
+    //
+    public void insertDummy() throws BaseException{
+        try{
+            Object jsonVO = new InfoInputReq();
+            JSONParser jsonParser = new JSONParser();
+            File path = new File("");
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(path.getAbsolutePath() + "/src/main/resources/dummy.json"));
+            jsonVO = jsonObject.get("infoDummyList");
+            System.out.println(jsonVO);
+
+            /*
+            for(InfoDummy infoDummy : infoDummyList){
+                int number = infoDummy.getInfoNumber();
+                String name = infoDummy.getName();
+                String imageUrl = infoDummy.getImageUrl();
+                InfoEntity infoEntity = new InfoEntity(number, imageUrl, name);
+                infoRepository.save(infoEntity);
+            }
+             */
+        } catch (Exception exception){
+            System.out.println(exception);
+            System.out.println(exception.getMessage());
+            System.out.println(exception.getCause());
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
     }

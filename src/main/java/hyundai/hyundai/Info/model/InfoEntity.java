@@ -20,4 +20,10 @@ public class InfoEntity {
     private int infoNumber;
     private String imageUrl;
     private String name;
+
+    public InfoEntity(int infoNumber, String imageUrl, String name){
+        this.infoNumber = infoNumber;
+        this.imageUrl = imageUrl;
+        this.name = name;
+    }
 }

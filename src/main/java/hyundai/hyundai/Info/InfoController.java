@@ -4,12 +4,20 @@ package hyundai.hyundai.Info;
 import hyundai.hyundai.ExceptionHandler.BaseException;
 import hyundai.hyundai.ExceptionHandler.BaseResponse;
 import hyundai.hyundai.Info.model.GetInfoRes;
+import hyundai.hyundai.Info.model.InfoDummy;
+import hyundai.hyundai.Info.model.InfoInputReq;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import org.apache.catalina.LifecycleState;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.*;
 import java.util.List;
 
 @RestController
@@ -34,4 +42,22 @@ public class InfoController {
             return new BaseResponse(baseException.getStatus());
         }
     }
+
+    @ResponseBody
+    @PostMapping("/insertDummyData")
+    @Operation(summary = "DB에 디폴트 더미 데이터 삽입", description = "백엔드에서만 사용하는 API 이므로 무시하셔도 됩니다!")
+    public BaseResponse getDummyListInJsonFile(){
+        try{
+            infoService.insertDummy();
+            return new BaseResponse();
+        } catch (BaseException baseException) {
+            return new BaseResponse(baseException.getStatus());
+        }
+    }
+        // List<InfoDummy> infoDummyList = infoInputReq.getInfoDummyList();
+        // Reader reader = new FileReader("dummy.json");
+        // infoService.insertDummy(infoDummyList);
+        // infoService.insertDummy();
+        // ResourceLoader resourceLoader;
+        // InputStream file = (InputStream) resourceLoader.getResource("dummy.json");
 }
