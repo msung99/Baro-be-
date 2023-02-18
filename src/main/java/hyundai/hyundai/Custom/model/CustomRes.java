@@ -13,5 +13,5 @@ import java.util.Set;
 public class CustomRes {
 
     @ApiModelProperty(example = "[1, 3, 5, 6]")
-    private List<Integer> customNumberList = new ArrayList<>();
+    private List<Integer> basicNumberList = new ArrayList<>();
 }

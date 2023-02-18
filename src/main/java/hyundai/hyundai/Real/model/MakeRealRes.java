@@ -1,4 +1,4 @@
-package hyundai.hyundai.Custom.model;
+package hyundai.hyundai.Real.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SetCustomListRes {
+public class MakeRealRes {
     @ApiModelProperty(example = "3")
-    private int basicRecord;
+    private int customRecord;
 }

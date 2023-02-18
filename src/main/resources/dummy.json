@@ -1,0 +1,19 @@
+{
+  "infoDummyList" : [
+    {
+      "infoNumber" : 100,
+      "imageUrl" : "myImageUrl1",
+      "name" : "myName1"
+    },
+    {
+      "infoNumber" : 101,
+      "imageUrl" : "myImageUrl2",
+      "name" : "myName2"
+    },
+    {
+      "infoNumber" : 102,
+      "imageUrl" : "myImageUrl3",
+      "name" : "myName3"
+    }
+  ]
+}

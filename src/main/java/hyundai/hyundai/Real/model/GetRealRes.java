@@ -1,18 +1,17 @@
-package hyundai.hyundai.Custom.model;
+package hyundai.hyundai.Real.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomReq {
-
-    @ApiModelProperty(example = "[1,null,3,null,5,6]")
-    private Set<Integer> basicNumberList;
+public class GetRealRes {
+    @ApiModelProperty(example = "[1, 3, 5, 6]")
+    private List<Integer> customNumberList = new ArrayList<>();
 }

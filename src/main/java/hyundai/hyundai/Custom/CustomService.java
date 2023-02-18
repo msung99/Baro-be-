@@ -38,7 +38,7 @@ public class CustomService {
             CustomRecordEntity customRecordEntity = makeCustomRecordReq.toEntity(); // CustomRecordEntity 생성
             customRecordRepository.save(customRecordEntity);
             // CustomEntity 데이터들 생성
-            for(Integer customNumber : customReq.getCustomNumberList()) {
+            for(Integer customNumber : customReq.getBasicNumberList()) {
                 if(customNumber != null) {
                     MakeCustomReq makeCustomReq = new MakeCustomReq(customNumber, customRecordEntity);
                     CustomEntity customEntity = makeCustomReq.toEntity();
@@ -60,7 +60,7 @@ public class CustomService {
             CustomRes customRes = new CustomRes();
 
             for(CustomEntity customEntity : customEntityList){
-                customRes.getCustomNumberList().add(Integer.valueOf(customEntity.getCustomNumber()));
+                customRes.getBasicNumberList().add(Integer.valueOf(customEntity.getCustomNumber()));
             }
 
 
