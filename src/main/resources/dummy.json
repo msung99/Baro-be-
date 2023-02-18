@@ -2,7 +2,7 @@
   "infoDummyList" : [
     {
       "infoNumber" : 100,
-      "imageUrl" : "myImageUrl1",
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/13a132fd-55ef-40b6-9d61-6260299284ce.png",
       "name" : "myName1"
     },
     {

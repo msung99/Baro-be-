@@ -37,12 +37,20 @@ public class InfoController {
     public BaseResponse<Object> getDummyListInJsonFile(){
         try{
             Object object = infoService.insertDummy();
-            System.out.println(object);
             return new BaseResponse(object);
         } catch (BaseException baseException) {
             return new BaseResponse(baseException.getStatus());
         }
     }
+    /*
+    @PostMapping
+    public BaseResponse insertDummyData(){
+        try{
+
+        } catch (BaseException baseException){
+            return new BaseResponse(baseException.getStatus());
+        }
+    }*/
 
     @ResponseBody
     @GetMapping("/getDBdummyData")

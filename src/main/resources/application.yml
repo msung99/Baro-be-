@@ -9,6 +9,9 @@ spring:
     password: msung6924 # 비밀번호를 입력해주세요!
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  file:
+    /json
+
   jpa:
     hibernate:
       ddl-auto=update:
@@ -58,3 +61,5 @@ openai:
 
 chatgpt:
   api-key: "${subKey}${lastKey}"
+
+

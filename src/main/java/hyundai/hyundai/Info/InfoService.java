@@ -9,10 +9,13 @@ import hyundai.hyundai.Info.model.InfoInputReq;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 
 import java.io.File;
 import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,16 +46,23 @@ public class InfoService {
         }
     }
 
-    //
+    // fake JSON API
     public Object insertDummy() throws BaseException{
         try{
-            Object jsonVO = new InfoInputReq();
+            String data = "";
+            ClassPathResource cpr = new ClassPathResource("/dummy.json");
+            byte[] bdata = FileCopyUtils.copyToByteArray(cpr.getInputStream());
+            data = new String(bdata, StandardCharsets.UTF_8);
             JSONParser jsonParser = new JSONParser();
-            File path = new File("");
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(path.getAbsolutePath() + "/src/main/resources/dummy.json"));
-            jsonVO = jsonObject.get("infoDummyList");
+            Object object = jsonParser.parse(data);
+            return object;
 
-            return jsonVO;
+            // Object jsonVO = new InfoInputReq();
+            // JSONParser jsonParser = new JSONParser();
+            // File path = new File("");
+            // JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(path.getAbsolutePath() + "/src/main/resources/dummy.json"));
+            // jsonVO = jsonObject.get("infoDummyList");
+            // return jsonVO;
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
