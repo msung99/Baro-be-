@@ -8,10 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,8 +24,8 @@ public class InfoController {
     }
 
     @ResponseBody
-    @PostMapping("/getAllInfo")
-    @Operation(summary = "DB에 존재하는 모든 디폴트 데이터 조회" , description = "")
+    @GetMapping("/getAllInfo")
+    @Operation(summary = "DB에 존재하는 모든 디폴트 데이터 조회" , description = "infoNumber, imageUrl, name 필드를 조회합니다.")
     public BaseResponse<List<GetInfoRes>> getInfo(){
         try{
             List<GetInfoRes> getInfoResList = infoService.getInfo();
