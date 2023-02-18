@@ -27,7 +27,7 @@ public class CustomController {
 
     @ResponseBody
     @PostMapping("/setBasicList")
-    @Operation(summary = "커스텀 가구 번호 선택", description = "커스텀할 가구 번호를 배열 형태로 입력받습니다.")
+    @Operation(summary = "베이직 번호 선택", description = "베이직 페이지에 표현할 베이직 정수형 배열 번호를 저장합니다.")
     public BaseResponse<SetCustomListRes> setCustomList(@RequestBody CustomReq customReq){
         try {
             int userIdx = jwtService.getUserIdx();
@@ -40,11 +40,11 @@ public class CustomController {
 
     @ResponseBody
     @GetMapping("/getBasicList")
-    @Operation(summary = "커스텀 가구 번호 배열조회", description = "커스텀했던 가구 번호 배열을 조회합니다.")
+    @Operation(summary = "베이직 번호 배열조회", description = "앞서 저장해놓았던 베이직 배열 번호를 조회합니다.")
     public BaseResponse<CustomRes> getCustomList(@RequestBody GetCustomListReq getCustomListReq){
         try {
             int userIdx = jwtService.getUserIdx();
-            int customRecord = getCustomListReq.getCustomRecord();
+            int customRecord = getCustomListReq.getBasicRecord();
             CustomRes customRes = customService.getCustomList(userIdx, customRecord);
             return new BaseResponse(customRes);
         } catch (BaseException baseException){

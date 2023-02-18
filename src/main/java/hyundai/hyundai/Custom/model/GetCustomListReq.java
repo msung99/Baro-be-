@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class GetCustomListReq {
 
     @ApiModelProperty(example = "1")
-    int customRecord;
+    int basicRecord;
 }

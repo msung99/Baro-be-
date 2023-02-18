@@ -14,5 +14,5 @@ import java.util.Set;
 public class CustomReq {
 
     @ApiModelProperty(example = "[1,null,3,null,5,6]")
-    private Set<Integer> customNumberList;
+    private Set<Integer> basicNumberList;
 }

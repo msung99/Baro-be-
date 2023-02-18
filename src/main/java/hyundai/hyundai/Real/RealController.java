@@ -27,7 +27,7 @@ public class RealController {
 
     @ResponseBody
     @PostMapping("/setCustomList")
-    @Operation(summary = "커스텀 배열 번호 선택", description = "커스텀 배열 반호를 선택합니다.")
+    @Operation(summary = "커스텀 배열 번호 선택", description = "커스텀 배열 반호를 저장합니다.")
     public BaseResponse<MakeRealRes> setCustomList(@RequestBody MakeReaReq makeRealReq){
         try{
             int userIdx = jwtService.getUserIdx();
