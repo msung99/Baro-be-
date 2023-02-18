@@ -1,9 +1,9 @@
 package hyundai.hyundai.Real;
 
+import hyundai.hyundai.Custom.model.CustomRecordEntity;
 import hyundai.hyundai.ExceptionHandler.BaseException;
 import hyundai.hyundai.ExceptionHandler.BaseResponseStatus;
-import hyundai.hyundai.Real.model.MakeReaReq;
-import hyundai.hyundai.Real.model.MakeRealRes;
+import hyundai.hyundai.Real.model.*;
 import hyundai.hyundai.User.UserRepository;
 import hyundai.hyundai.User.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,19 @@ public class RealService {
     public MakeRealRes setRealList(int userIdx, MakeReaReq makeReaReq) throws BaseException {
         try{
             UserEntity userEntity = userRepository.findById(userIdx).get();
+            MakeRealRecordReq makeRealRecordReq = new MakeRealRecordReq(userEntity);
+            RealRecordEntity realRecordEntity = makeRealRecordReq.toEntity();
+            realRecordRepository.save(realRecordEntity);
 
+            for(Integer realNumber : makeReaReq.getCustomNumberList()){
+                if(realNumber != null){
+                    SetRealReq setRealReq = new SetRealReq(realNumber, realRecordEntity);
+                    RealEntity realEntity = setRealReq.toEntity();
+                    realRepository.save(realEntity);
+                }
+            }
+            int realIdx = realRecordEntity.getRealRecordIdx();
+            return new MakeRealRes(realIdx);
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }

@@ -12,9 +12,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/custom")
+@RequestMapping("/basic")
 @RestController
-@Api(value = "custom", tags = "커스텀후 배열 나열관련 API")
+@Api(value = "basic", tags = "베이직 배열 나열관련 API")
 public class CustomController {
     private final CustomService customService;
     private final JwtService jwtService;
@@ -26,7 +26,7 @@ public class CustomController {
     }
 
     @ResponseBody
-    @PostMapping("/setCustomList")
+    @PostMapping("/setBasicList")
     @Operation(summary = "커스텀 가구 번호 선택", description = "커스텀할 가구 번호를 배열 형태로 입력받습니다.")
     public BaseResponse<SetCustomListRes> setCustomList(@RequestBody CustomReq customReq){
         try {
@@ -39,7 +39,7 @@ public class CustomController {
     }
 
     @ResponseBody
-    @GetMapping("/getCustomList")
+    @GetMapping("/getBasicList")
     @Operation(summary = "커스텀 가구 번호 배열조회", description = "커스텀했던 가구 번호 배열을 조회합니다.")
     public BaseResponse<CustomRes> getCustomList(@RequestBody GetCustomListReq getCustomListReq){
         try {

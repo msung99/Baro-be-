@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/custom")
 @RestController
-@Api(value = "custom", "tags" = "커스텀 페이지 배열 나열관련 API")
+@Api(value = "custom", tags = "커스텀 페이지 배열 나열관련 API")
 public class RealController {
     private final RealService realService;
     private final JwtService jwtService;
@@ -26,10 +26,11 @@ public class RealController {
     @ResponseBody
     @PostMapping("/setCustomList")
     @Operation(summary = "커스텀 배열 번호 선택", description = "커스텀 배열 반호를 선택합니다.")
-    public BaseResponse<> setCustomList(@RequestBody MakeReaReq makeRealReq){
+    public BaseResponse<MakeRealRes> setCustomList(@RequestBody MakeReaReq makeRealReq){
         try{
             int userIdx = jwtService.getUserIdx();
             MakeRealRes makeRealRes = realService.setRealList(userIdx, makeRealReq);
+            return new BaseResponse(makeRealRes);
         } catch (BaseException baseException){
             return new BaseResponse(baseException.getStatus());
         }
