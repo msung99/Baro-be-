@@ -44,15 +44,14 @@ public class InfoService {
     }
 
     //
-    public void insertDummy() throws BaseException{
+    public Object insertDummy() throws BaseException{
         try{
             Object jsonVO = new InfoInputReq();
             JSONParser jsonParser = new JSONParser();
             File path = new File("");
             JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(path.getAbsolutePath() + "/src/main/resources/dummy.json"));
             jsonVO = jsonObject.get("infoDummyList");
-            System.out.println(jsonVO);
-
+            return jsonVO;
             /*
             for(InfoDummy infoDummy : infoDummyList){
                 int number = infoDummy.getInfoNumber();

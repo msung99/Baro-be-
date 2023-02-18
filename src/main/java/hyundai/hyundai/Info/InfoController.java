@@ -32,8 +32,20 @@ public class InfoController {
     }
 
     @ResponseBody
-    @GetMapping("/getAllInfo")
-    @Operation(summary = "DB에 존재하는 모든 디폴트 데이터 조회" , description = "infoNumber, imageUrl, name 필드를 조회합니다.")
+    @PostMapping("/getAllInfo")
+    @Operation(summary = "모든 디폴트 더미 데이터 조회", description = "infoNumber, imageUrl, name 필드를 조회합니다.")
+    public BaseResponse<Object> getDummyListInJsonFile(){
+        try{
+            Object object = infoService.insertDummy();
+            return new BaseResponse(object);
+        } catch (BaseException baseException) {
+            return new BaseResponse(baseException.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/getDBdummyData")
+    @Operation(summary = "DB에 존재하는 모든 디폴트 데이터 조회", description = "백엔드에서만 사용하는 테스트 API 이므로 무시하셔도 됩니다!")
     public BaseResponse<List<GetInfoRes>> getInfo(){
         try{
             List<GetInfoRes> getInfoResList = infoService.getInfo();
@@ -43,17 +55,6 @@ public class InfoController {
         }
     }
 
-    @ResponseBody
-    @PostMapping("/insertDummyData")
-    @Operation(summary = "DB에 디폴트 더미 데이터 삽입", description = "백엔드에서만 사용하는 API 이므로 무시하셔도 됩니다!")
-    public BaseResponse getDummyListInJsonFile(){
-        try{
-            infoService.insertDummy();
-            return new BaseResponse();
-        } catch (BaseException baseException) {
-            return new BaseResponse(baseException.getStatus());
-        }
-    }
         // List<InfoDummy> infoDummyList = infoInputReq.getInfoDummyList();
         // Reader reader = new FileReader("dummy.json");
         // infoService.insertDummy(infoDummyList);
