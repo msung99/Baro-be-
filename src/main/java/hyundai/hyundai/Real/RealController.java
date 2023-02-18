@@ -2,6 +2,8 @@ package hyundai.hyundai.Real;
 
 import hyundai.hyundai.ExceptionHandler.BaseException;
 import hyundai.hyundai.ExceptionHandler.BaseResponse;
+import hyundai.hyundai.Real.model.GetRealReq;
+import hyundai.hyundai.Real.model.GetRealRes;
 import hyundai.hyundai.Real.model.MakeReaReq;
 import hyundai.hyundai.Real.model.MakeRealRes;
 import hyundai.hyundai.utils.JwtService;
@@ -36,6 +38,17 @@ public class RealController {
         }
     }
 
-    // @ResponseBody
-    // @PostMapping("/getCustomList"
+    @ResponseBody
+    @PostMapping("/getCustomList")
+    @Operation(summary = "커스텀 배열 번호 조회", description = "앞서 저장해놓았던 커스텀 배열 번호를 조회합니다.")
+    public BaseResponse<GetRealRes> getCustomList(@RequestBody GetRealReq getRealReq){
+        try{
+            int userIdx = jwtService.getUserIdx();
+            int customRecord = getRealReq.getCustomRecord();;
+            GetRealRes getRealres = realService.getRealList(userIdx, customRecord);
+            return new BaseResponse(getRealres);
+        } catch (BaseException baseException){
+            return new BaseResponse(baseException.getStatus());
+        }
+    }
 }

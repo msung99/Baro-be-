@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class RealService {
     private final UserRepository userRepository;
@@ -40,6 +42,21 @@ public class RealService {
             }
             int realIdx = realRecordEntity.getRealRecordIdx();
             return new MakeRealRes(realIdx);
+        } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        }
+    }
+
+    public GetRealRes getRealList(int userIdx, int customRecordIdx) throws BaseException{
+        try{
+            RealRecordEntity realRecordEntity = realRecordRepository.findById(customRecordIdx).get();
+            List<RealEntity> realEntityList = realRepository.getRealList(realRecordEntity);
+            GetRealRes getRealRes = new GetRealRes();
+
+            for(RealEntity realEntity : realEntityList){
+                getRealRes.getCustomNumberList().add(Integer.valueOf(realEntity.getRealNumber()));
+            }
+            return getRealRes;
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
