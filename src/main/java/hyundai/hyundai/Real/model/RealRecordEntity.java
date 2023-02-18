@@ -21,5 +21,5 @@ public class RealRecordEntity {
     private UserEntity user;
 
     @OneToMany(mappedBy = "realRecord")
-    private List<RealEntity> realEntityList;
+    private List<RealEntity> realList;
 }

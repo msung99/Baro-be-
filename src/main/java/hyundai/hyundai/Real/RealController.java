@@ -35,4 +35,7 @@ public class RealController {
             return new BaseResponse(baseException.getStatus());
         }
     }
+
+    // @ResponseBody
+    // @PostMapping("/getCustomList"
 }
