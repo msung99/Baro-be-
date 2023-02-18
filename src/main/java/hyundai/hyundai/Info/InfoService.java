@@ -51,20 +51,9 @@ public class InfoService {
             File path = new File("");
             JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(path.getAbsolutePath() + "/src/main/resources/dummy.json"));
             jsonVO = jsonObject.get("infoDummyList");
+
             return jsonVO;
-            /*
-            for(InfoDummy infoDummy : infoDummyList){
-                int number = infoDummy.getInfoNumber();
-                String name = infoDummy.getName();
-                String imageUrl = infoDummy.getImageUrl();
-                InfoEntity infoEntity = new InfoEntity(number, imageUrl, name);
-                infoRepository.save(infoEntity);
-            }
-             */
         } catch (Exception exception){
-            System.out.println(exception);
-            System.out.println(exception.getMessage());
-            System.out.println(exception.getCause());
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
     }

@@ -33,10 +33,11 @@ public class InfoController {
 
     @ResponseBody
     @PostMapping("/getAllInfo")
-    @Operation(summary = "모든 디폴트 더미 데이터 조회", description = "infoNumber, imageUrl, name 필드를 조회합니다.")
+    @Operation(summary = "모든 디폴트 더미 데이터 조회", description = "infoNumber, imageUrl, name 필드를 조회합니다. / 스웨거에서 'execute' 버튼 누르면 모든 값들 싹다 조회됩니다!")
     public BaseResponse<Object> getDummyListInJsonFile(){
         try{
             Object object = infoService.insertDummy();
+            System.out.println(object);
             return new BaseResponse(object);
         } catch (BaseException baseException) {
             return new BaseResponse(baseException.getStatus());
