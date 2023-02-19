@@ -18,9 +18,11 @@ public class IdentificationReq {
     String identification;
     //     @Pattern(regexp = "^[a-z0-9]{5,20}$", message = "아이디는 영어 소문자와 숫자만 사용하여 5~20자리여야 합니다.")
 
-    public UserEntity toEntity(){
+    public UserEntity toEntity(String identify){
+        System.out.println("2=================================");
+        System.out.println(identify);
         return UserEntity.builder()
-                .identification(identification)
+                .identification(identify)
                 .build();
     }
 }
