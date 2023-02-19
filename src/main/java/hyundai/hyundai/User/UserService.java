@@ -80,11 +80,11 @@ public class UserService {
             if(userRepository.existsUserEntityByIdentification(identificationReq.getIdentification())){
                 throw new BaseException(BaseResponseStatus.EXISTS_USER);
             }
-            UserEntity userEntity = identificationReq.toEntity();
+            UserEntity userEntity = identificationReq.toEntity(identificationReq.getIdentification());
             userRepository.save(userEntity);
             return userEntity.getUserIdx();
-        } catch (Exception exception){
-            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        } catch (BaseException baseException){
+            throw new BaseException(BaseResponseStatus.EXISTS_USER);
         }
     }
 
@@ -110,8 +110,8 @@ public class UserService {
             if (!CheckValidForm.isEqual_Passwrord_Check(repasswordReq.getRePassword(), userEntity.getPassword())) {
                 throw new BaseException(BaseResponseStatus.NOT_EQUAL_PASSWORD_REPASSWORD);
             }
-        } catch (Exception exception){
-            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        } catch (BaseException baseException){
+            throw new BaseException(baseException.getStatus());
         }
     }
 
