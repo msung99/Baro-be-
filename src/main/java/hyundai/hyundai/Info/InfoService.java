@@ -47,7 +47,7 @@ public class InfoService {
     }
 
     // fake JSON API
-    public Object insertDummy() throws BaseException{
+    public Object getDummy() throws BaseException{
         try{
             String data = "";
             ClassPathResource cpr = new ClassPathResource("/dummy.json");
@@ -57,12 +57,6 @@ public class InfoService {
             Object object = jsonParser.parse(data);
             return object;
 
-            // Object jsonVO = new InfoInputReq();
-            // JSONParser jsonParser = new JSONParser();
-            // File path = new File("");
-            // JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(path.getAbsolutePath() + "/src/main/resources/dummy.json"));
-            // jsonVO = jsonObject.get("infoDummyList");
-            // return jsonVO;
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
         }
