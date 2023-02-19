@@ -22,7 +22,7 @@ import java.util.Date;
 public class JwtService {
     private static final String AUTHORITIES_KEY = "auth";
     private static final String BEARER_TYPE = "Bearer";
-    private static final long ACCESS_TOKEN_EXPIRE_TIME = 1*(1000*60*30); // 30분
+    private static final long ACCESS_TOKEN_EXPIRE_TIME =  24 * 60 * 60 * 1000L; // 24시간 (하루)
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000L;  // 7일
     private final String key = Secret.JWT_SECRET_KEY;
 
