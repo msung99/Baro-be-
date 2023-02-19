@@ -26,7 +26,7 @@ public class MyChatGPTService {
     @Value("${openai.api-key}")
     private String apikey;
 
-    List<String> keywordList = Arrays.asList("의료", "거주", "운송", "스토어", "이동수단", "오피스", "엔터테인먼트");
+    List<String> keywordList = Arrays.asList("의료", "거주", "운송", "스토어", "오피스", "엔터테인먼트");
 
     public ChatGptRes getChatResponse(String prompt) throws BaseException {
         try {
@@ -46,7 +46,25 @@ public class MyChatGPTService {
         String result = null;
         for (String keyword :keywordList){
             if(responseMessage.contains(keyword)){
-                result = keyword;
+                // result = keyword;
+                if(keyword == "의료"){
+                    result = "medical";
+                }
+                else if(keyword == "거주"){
+                    result = "living";
+                }
+                else if(keyword == "엔터테인먼트"){
+                    result = "entertainment";
+                }
+                else if(keyword == "운송"){
+                    result = "transit";
+                }
+                else if(keyword == "스토어"){
+                    result = "store";
+                }
+                else if(keyword == "오피스"){
+                    result = "office";
+                }
                 break;
             }
         }
