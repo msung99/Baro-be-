@@ -6,11 +6,12 @@
 
 **Back-end**
 
-- SpringBoot
-- Jenkins & Docker
-- AWS EC2, RDS, S3
-- Spring Data JPA, JPA
-- 추후에 추가로 작성
+-  Framework : SpringBoot (Spring Data JPA, JPA)
+-  CI/CD : Jenkins & Docker
+-  Infra : AWS EC2, RDS, S3, CloudFront (for CDN Env.)
+-  LoadBalancer : Nginx 1.7.1 (for Thread Pool)
+-  Database : MySQL 8.0
+-  OpenAI (based on Davinci-003 Model)
 
 ## Branch Strategy
 
