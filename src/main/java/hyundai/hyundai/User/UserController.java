@@ -104,4 +104,30 @@ public class UserController {
             return new BaseResponse(exception.getStatus());
         }
     }
+
+    @ResponseBody
+    @PostMapping("/order")
+    @Operation(summary = "대며 및 구매시 사용자 정보입력", description = "핸드폰 번호랑 탑승자 이름을 입력받습니다.")
+    public BaseResponse setOrderInfo(@RequestBody OrderReq orderReq){
+        try{
+            int userIdx = jwtService.getUserIdx();
+            userService.setOrderInfo(userIdx, orderReq);
+            return new BaseResponse();
+        } catch (BaseException baseException){
+            return new BaseResponse(baseException.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/orderInfo")
+    @Operation(summary = "에약 상세내역 조회", description =  "결제 페이지에서 아까 입력했던 사용자 핸드폰 번호, 탐승자 이름을 조회합니다.")
+    public BaseResponse<OrderRes> getOrderInfo(){
+        try{
+            int userIdx = jwtService.getUserIdx();
+            OrderRes orderRes = userService.getOrderInfo(userIdx);
+            return new BaseResponse(orderRes);
+        } catch (BaseException baseException){
+            return new BaseResponse(baseException.getStatus());
+        }
+    }
 }
