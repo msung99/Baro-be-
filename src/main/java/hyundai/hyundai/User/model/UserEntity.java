@@ -35,6 +35,10 @@ public class UserEntity {
     @OneToMany(mappedBy = "user")
     private List<CustomRecordEntity> customRecordEntityList = new ArrayList<>();
 
+    String phoneNumber;
+
+    String orderName;
+
     // https://devhan.tistory.com/174
     // @CollectionTable(name = "customList", joinColumns = @JoinColumn(name = "customIdx"))
     // @ElementCollection(fetch = FetchType.LAZY)

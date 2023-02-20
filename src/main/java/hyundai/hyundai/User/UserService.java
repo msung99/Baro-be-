@@ -126,4 +126,26 @@ public class UserService {
 
         return validatorResult;
     }
+
+    public void setOrderInfo(int userIdx, OrderReq orderReq) throws BaseException{
+        try{
+            String phoneNumber = orderReq.getPhoneNumber();
+            String orderName = orderReq.getOrderName();
+            UserEntity userEntity = userRepository.findById(userIdx).get();
+            userEntity.setOrderName(orderName);
+            userEntity.setPhoneNumber(phoneNumber);
+            userRepository.save(userEntity);
+        } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        }
+    }
+
+    public OrderRes getOrderInfo(int userIdx) throws BaseException{
+        try{
+            OrderRes orderRes = userRepository.getOrderInfo(userIdx);
+            return orderRes;
+        } catch (Exception exception){
+            throw new BaseException(BaseResponseStatus.SERVER_ERROR);
+        }
+    }
 }
