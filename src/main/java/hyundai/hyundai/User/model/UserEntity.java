@@ -38,6 +38,7 @@ public class UserEntity {
     String phoneNumber;
 
     String orderName;
+    String address;
 
     // https://devhan.tistory.com/174
     // @CollectionTable(name = "customList", joinColumns = @JoinColumn(name = "customIdx"))

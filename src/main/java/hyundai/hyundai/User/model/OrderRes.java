@@ -14,4 +14,7 @@ public class OrderRes {
 
     @ApiModelProperty(example = "나문희")
     private String orderName;
+
+    @ApiModelProperty(example = "경기도 김포시")
+    private String address;
 }
