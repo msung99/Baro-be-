@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginUserReq {
-
     @ApiModelProperty(example = "msung1234")
     private String identification;
 
