@@ -131,9 +131,11 @@ public class UserService {
         try{
             String phoneNumber = orderReq.getPhoneNumber();
             String orderName = orderReq.getOrderName();
+            String address = orderReq.getAddress();
             UserEntity userEntity = userRepository.findById(userIdx).get();
             userEntity.setOrderName(orderName);
             userEntity.setPhoneNumber(phoneNumber);
+            userEntity.setAddress(address);
             userRepository.save(userEntity);
         } catch (Exception exception){
             throw new BaseException(BaseResponseStatus.SERVER_ERROR);
