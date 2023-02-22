@@ -1,19 +1,99 @@
 {
   "infoDummyList" : [
     {
-      "infoNumber" : 100,
-      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/13a132fd-55ef-40b6-9d61-6260299284ce.png",
-      "name" : "myName1"
+      "infoNumber" : 0,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i0.png",
+      "name" : "적재량(수납상자)"
     },
     {
-      "infoNumber" : 101,
-      "imageUrl" : "myImageUrl2",
-      "name" : "myName2"
+      "infoNumber" : 1,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i1.png",
+      "name" : "결제창(키오스크)"
     },
     {
-      "infoNumber" : 102,
+      "infoNumber" : 3,
       "imageUrl" : "myImageUrl3",
-      "name" : "myName3"
+      "name" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i3.png"
+    },
+    {
+      "infoNumber" : 4,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i4.png",
+      "name" : "냉장고 온도,적재량(냉동창고)"
+    },
+    {
+      "infoNumber" : 5,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i5.png",
+      "name" : "온오프(전등)"
+    },
+    {
+      "infoNumber" : 6,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i6.png",
+      "name" : "채중(의료용 침대)"
+    },
+    {
+      "infoNumber" : 7,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i7.png",
+      "name" : "의료 심박수 체온(의료용 디스플레이)"
+    },
+    {
+      "infoNumber" : 9,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i9.png",
+      "name" : "온오프(pc)"
+    },
+    {
+      "infoNumber" : 10,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i10.png",
+      "name" : "차내온도습도(화분)"
+    },
+    {
+      "infoNumber" : 11,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i11.png",
+      "name" : "냉장고 온도 적재량(냉장고)"
+    },
+    {
+      "infoNumber" : 15,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i15.png",
+      "name" : "볼륨 조절 온오프(스피커)"
+    },
+    {
+      "infoNumber" : 17,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i17.png",
+      "name" : "온오프(TV)"
+    },
+    {
+      "infoNumber" : 19,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i19.png",
+      "name" : "줌"
+    },
+    {
+      "infoNumber" : 20,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i20.png",
+      "name" : "유튜브"
+    },
+    {
+      "infoNumber" : 21,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i21.png",
+      "name" : "넷플릭스"
+    },
+    {
+      "infoNumber" : 22,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i22.png",
+      "name" : "메일"
+    },
+    {
+      "infoNumber" : 23,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i23.png",
+      "name" : "인터넷"
+    },
+    {
+      "infoNumber" : 24,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i24.png",
+      "name" : "아마존"
+    },
+    {
+      "infoNumber" : 25,
+      "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i25.png",
+      "name" : "현대 모비스"
     }
   ]
 }
