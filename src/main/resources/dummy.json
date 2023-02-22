@@ -3,22 +3,22 @@
     {
       "infoNumber" : 0,
       "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i0.png",
-      "name" : "적재량(수납상자)"
+      "name" : "적재량(수납)"
     },
     {
       "infoNumber" : 1,
       "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i1.png",
-      "name" : "결제창(키오스크)"
+      "name" : "결제창"
     },
     {
       "infoNumber" : 3,
       "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i3.png",
-      "name" : "적재량(가판대)"
+      "name" : "적재량(가판)"
     },
     {
       "infoNumber" : 4,
       "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i4.png",
-      "name" : "냉장고 온도,적재량(냉동창고)"
+      "name" : "냉동창고"
     },
     {
       "infoNumber" : 5,
@@ -28,32 +28,32 @@
     {
       "infoNumber" : 6,
       "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i6.png",
-      "name" : "채중(의료용 침대)"
+      "name" : "채중계"
     },
     {
       "infoNumber" : 7,
       "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i7.png",
-      "name" : "의료 심박수 체온(의료용 디스플레이)"
+      "name" : "메디컬플레이"
     },
     {
       "infoNumber" : 9,
       "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i9.png",
-      "name" : "온오프(pc)"
+      "name" : "온오프(PC)"
     },
     {
       "infoNumber" : 10,
       "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i10.png",
-      "name" : "차내온도습도(화분)"
+      "name" : "내부환경"
     },
     {
       "infoNumber" : 11,
       "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i11.png",
-      "name" : "냉장고 온도 적재량(냉장고)"
+      "name" : "냉장고"
     },
     {
       "infoNumber" : 15,
       "imageUrl" : "https://hyundai-bucket-test.s3.ap-northeast-2.amazonaws.com/infortainment/i15.png",
-      "name" : "볼륨 조절 온오프(스피커)"
+      "name" : "스피커"
     },
     {
       "infoNumber" : 17,
