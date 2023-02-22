@@ -16,6 +16,17 @@
 -  Database : MySQL 8.0
 -  OpenAI (based on Davinci-003 Model)
 
+---
+
+## 젠킨스 빌드 과정 (by Build Trigger & Github WebHook)
+
+이번 프로젝트에 실제로 구축했던 블로깅 내용입니다. : [[CI/CD] Jenkins 기반 다중 Docker 컨테이너 : 애플리케이션 동시 배포 자동화하기](https://velog.io/@msung99/CICD-Jenkins-%EA%B8%B0%EB%B0%98-%EB%8B%A4%EC%A4%91-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EB%B0%B0%ED%8F%AC-%EC%9E%90%EB%8F%99%ED%99%94)
+
+### main branch 에 코드 내용반영시, 빌드가 되는 모습입니다. 
+
+![image](https://user-images.githubusercontent.com/88240193/220641985-cdc5a973-96d4-4101-bf1e-b579b5894986.png)
+
+
 ## Branch Strategy
 
 Github flow 전략을 사용합니다.
