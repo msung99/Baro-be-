@@ -39,7 +39,7 @@ public class CustomController {
     }
 
     @ResponseBody
-    @GetMapping("/getBasicList")
+    @PostMapping("/getBasicList")
     @Operation(summary = "베이직 번호 배열조회", description = "앞서 저장해놓았던 베이직 배열 번호를 조회합니다.")
     public BaseResponse<CustomRes> getCustomList(@RequestBody GetCustomListReq getCustomListReq){
         try {
