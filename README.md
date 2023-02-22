@@ -2,9 +2,12 @@
 
 본 프로젝트는 2023년 현대 모비스 해커톤 출품작입니다.
 
-## Project Stack
+## Architecture (Devops & Infra 아키텍처)
 
-**Back-end**
+![image](https://user-images.githubusercontent.com/88240193/220622794-0507af22-3814-459f-b6ee-d582373b0632.png)
+
+
+## Project Stack (Back-end)
 
 -  Framework : SpringBoot (Spring Data JPA, JPA)
 -  CI/CD : Jenkins & Docker
