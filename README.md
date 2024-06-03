@@ -1,4 +1,4 @@
-![image](https://github.com/msung99/Baro-be-/assets/88240193/8015a8e8-efc4-4d80-bd07-31860b9e5f85)# Baro
+# Baro
 
 본 프로젝트는 2023년 대학교 창업 동아리 멋쟁이사자처럼 & 현대 모비스 해커톤 출품작입니다.
 
